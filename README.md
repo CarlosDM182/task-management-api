@@ -280,7 +280,6 @@ It contains:
 * DTOs
 * Application interfaces
 * Application services
-* Business flow orchestration
 
 ### TaskManagement.Domain
 
