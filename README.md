@@ -85,7 +85,7 @@ Example request:
 "password": "password123"
 }
 
-\##Users
+## Users
 
 ### Register
 
@@ -139,7 +139,7 @@ Example request:
 Delete task
 DELETE /api/tasks/{id}
 
-\##HTTP Responses
+## HTTP Responses
 The API uses standard HTTP status codes.
 Status Code	Description
 200	Successful request
@@ -154,7 +154,7 @@ Status Code	Description
 
 
 
-\##Database
+## Database
 The project uses SQL Server as its persistence layer.
 Database scripts are versioned in the repository:
 001\_CreateDatabase.sql
@@ -176,7 +176,7 @@ Users
 Tasks
 
 Each task belongs to a user through the UserId foreign key.
-##SQL-First Approach
+## SQL-First Approach
 This project uses a SQL-first approach with Dapper instead of Entity Framework Core.
 SQL Server is treated as the source of truth for the database schema.
 Dapper is responsible for executing SQL queries and mapping database results to domain entities.
@@ -189,7 +189,7 @@ This approach provides explicit control over:
 * Database changes
 SQL scripts are versioned together with the application code.
 
-\##Configuration
+## Configuration
 Configure the SQL Server connection string in:
 TaskManagement.Api/appsettings.json
 
@@ -214,7 +214,7 @@ Do not use development secrets in production.
 
 For production environments, JWT keys and other sensitive configuration values should be stored using secure configuration mechanisms such as environment variables or cloud secret management.
 
-\##Running the Project
+## Running the Project
 
 ### Restore dependencies
 
@@ -232,11 +232,11 @@ dotnet run --project TaskManagement.Api
 
 dotnet test
 
-\##OpenAPI
+## OpenAPI
 The API exposes an OpenAPI document during development.
 /openapi/v1.json
 
-\##Testing
+## Testing
 The project includes unit tests using xUnit and Moq.
 The tests cover important application and business rules, including:
 
@@ -254,7 +254,7 @@ The tests cover important application and business rules, including:
 Run all tests with:
 dotnet test
 
-\##Project Structure
+## Project Structure
 
 ### TaskManagement.Api
 
@@ -306,7 +306,7 @@ The project uses:
 * xUnit
 * Moq
 
-\##Development Principles
+## Development Principles
 The project applies several software engineering principles and patterns:
 
 * SOLID principles
@@ -320,7 +320,7 @@ The project applies several software engineering principles and patterns:
 * SQL-first development
 The project intentionally avoids unnecessary architectural complexity such as CQRS, MediatR, Event Sourcing, and Microservices.
 
-\##Error Handling
+## Error Handling
 The API includes global exception handling through custom middleware.
 Known application errors are converted into appropriate HTTP responses.
 Unexpected exceptions are logged and returned as:
@@ -328,7 +328,7 @@ Unexpected exceptions are logged and returned as:
 
 without exposing internal implementation details to the client.
 
-\##Security
+## Security
 Security-related practices implemented in the project include:
 
 * JWT Bearer authentication
@@ -339,7 +339,7 @@ Security-related practices implemented in the project include:
 * Protected API endpoints
 * Duplicate email validation
 
-\##Future Improvements
+## Future Improvements
 Planned improvements for this project include:
 
 * GitHub Actions CI/CD
