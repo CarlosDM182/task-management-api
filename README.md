@@ -14,10 +14,12 @@ REST API for task management built with ASP.NET Core and .NET 10.
 * xUnit
 * Moq
 * OpenAPI
+* Docker
+* GitHub Actions
 
 ## Architecture
 
-The project follows a layered architecture inspired by Clean Architecture and tactical Domain-Driven Design.
+The project follows a layered architecture inspired by Clean Architecture.
 
 TaskManagement
 │
@@ -49,27 +51,27 @@ TaskManagement
 
 ## Features
 
-\-User registration
--User login
--JWT authentication
--BCrypt password hashing
--Task CRUD operations
--User ownership validation
--Protected endpoints
--SQL Server persistence
--Dapper data access
--Global exception handling
--Input validation
--Duplicate email validation
--HTTP status code handling
--OpenAPI documentation
+* User registration
+* User login
+* JWT authentication
+* BCrypt password hashing
+* Task CRUD operations
+* User ownership validation
+* Protected endpoints
+* SQL Server persistence
+* Dapper data access
+* Global exception handling
+* Input validation
+* Duplicate email validation
+* HTTP status code handling
+* OpenAPI documentation
 
 ## Authentication and Authorization
 
-The API uses JWT Bearer authentication.
+The API uses JWT Bearer authentication.<br>
 After logging in, the API returns a JWT token that must be included in protected requests: Authorization: Bearer {token}
 
-Users can only access, update, and delete their own tasks.
+Users can only access, update, and delete their own tasks.<br>
 Ownership is validated using the authenticated user's ID obtained from the JWT claims.
 
 ## API Endpoints
@@ -140,28 +142,28 @@ Delete task
 DELETE /api/tasks/{id}
 
 ## HTTP Responses
-The API uses standard HTTP status codes.
-Status Code	Description
-200	Successful request
-201	Resource successfully created
-204	Resource successfully updated or deleted
-400	Invalid request
-401	Authentication required or invalid credentials
-403	User does not have permission to access the resource
-404	Resource not found
-409	Resource conflict, such as duplicate email
-500	Unexpected server error
+* The API uses standard HTTP status codes.
+* Status Code	Description
+* 200	Successful request
+* 201	Resource successfully created
+* 204	Resource successfully updated or deleted
+* 400	Invalid request
+* 401	Authentication required or invalid credentials
+* 403	User does not have permission to access the resource
+* 404	Resource not found
+* 409	Resource conflict, such as duplicate email
+* 500	Unexpected server error
 
 
 
 ## Database
-The project uses SQL Server as its persistence layer.
-Database scripts are versioned in the repository:
-001\_CreateDatabase.sql
-002\_CreateTasks.sql
-003\_CreateUsers.sql
-004\_AddTaskUserForeignKey.sql
-005\_AddUserPassword.sql
+* The project uses SQL Server as its persistence layer.
+* Database scripts are versioned in the repository:
+* 001\CreateDatabase.sql
+* 002\CreateTasks.sql
+* 003\CreateUsers.sql
+* 004\AddTaskUserForeignKey.sql
+* 005\AddUserPassword.sql
 
 Run the scripts in the order shown above.
 
@@ -176,10 +178,11 @@ Users
 Tasks
 
 Each task belongs to a user through the UserId foreign key.
+
 ## SQL-First Approach
-This project uses a SQL-first approach with Dapper instead of Entity Framework Core.
-SQL Server is treated as the source of truth for the database schema.
-Dapper is responsible for executing SQL queries and mapping database results to domain entities.
+This project uses a SQL-first approach with Dapper instead of Entity Framework Core.<br>
+SQL Server is treated as the source of truth for the database schema.<br>
+Dapper is responsible for executing SQL queries and mapping database results to domain entities.<br>
 This approach provides explicit control over:
 
 * SQL queries
@@ -187,6 +190,7 @@ This approach provides explicit control over:
 * Relationships
 * Performance
 * Database changes
+
 SQL scripts are versioned together with the application code.
 
 ## Configuration
@@ -237,7 +241,7 @@ The API exposes an OpenAPI document during development.
 /openapi/v1.json
 
 ## Testing
-The project includes unit tests using xUnit and Moq.
+The project includes unit tests using xUnit and Moq.<br>
 The tests cover important application and business rules, including:
 
 * Task creation
@@ -251,6 +255,7 @@ The tests cover important application and business rules, including:
 * Task deletion ownership
 * User creation
 * Duplicate email validation
+
 Run all tests with:
 dotnet test
 
@@ -258,7 +263,7 @@ dotnet test
 
 ### TaskManagement.Api
 
-Responsible for the HTTP layer of the application.
+Responsible for the HTTP layer of the application.<br>
 It contains:
 
 * Controllers
@@ -269,7 +274,7 @@ It contains:
 
 ### TaskManagement.Application
 
-Contains the application's business use cases.
+Contains the application's business use cases.<br>
 It contains:
 
 * DTOs
@@ -279,7 +284,7 @@ It contains:
 
 ### TaskManagement.Domain
 
-Contains the core domain model.
+Contains the core domain model.<br  >
 It contains:
 
 * Entities
@@ -289,7 +294,7 @@ The Domain layer does not depend on Infrastructure or API.
 
 ### TaskManagement.Infrastructure
 
-Contains implementations related to external concerns.
+Contains implementations related to external concerns.<br>
 It contains:
 
 * SQL Server connection management
@@ -300,7 +305,7 @@ It contains:
 
 ### TaskManagement.Tests
 
-Contains unit tests for application services and business rules.
+Contains unit tests for application services and business rules.<br>
 The project uses:
 
 * xUnit
@@ -313,16 +318,15 @@ The project applies several software engineering principles and patterns:
 * Dependency Injection
 * Repository Pattern
 * Layered Architecture
-* Tactical Domain-Driven Design
 * Separation of Responsibilities
 * DTO pattern
 * Unit Testing
 * SQL-first development
-The project intentionally avoids unnecessary architectural complexity such as CQRS, MediatR, Event Sourcing, and Microservices.
 
 ## Error Handling
-The API includes global exception handling through custom middleware.
+The API includes global exception handling through custom middleware.<br>
 Known application errors are converted into appropriate HTTP responses.
+
 Unexpected exceptions are logged and returned as:
 500 Internal Server Error
 
@@ -339,12 +343,36 @@ Security-related practices implemented in the project include:
 * Protected API endpoints
 * Duplicate email validation
 
+## Continuous Integration and Containerization
+
+The project includes automated CI using GitHub Actions.
+
+The CI pipeline:
+
+* Restores dependencies
+* Builds the solution in Release configuration
+* Runs the unit tests
+
+The application is also containerized using Docker with a multi-stage build.
+
+
+## Docker
+
+* Build the Docker image:
+
+* docker build -t taskmanagement-api .
+
+* Run the container:
+
+* docker run --name taskmanagement-api-container -p 8080:8080 taskmanagement-api
+
+For containerized environments, sensitive configuration such as the database connection string and JWT settings should be provided through environment variables.
+
 ## Future Improvements
+
 Planned improvements for this project include:
 
-* GitHub Actions CI/CD
-* Docker containerization
 * Cloud deployment
 * Application monitoring
 * Production configuration and secret management
-
+* Automated deployment
