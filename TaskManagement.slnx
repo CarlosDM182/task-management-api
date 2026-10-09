@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Database/">
+    <File Path="001_CreateDatabase.sql" />
+    <File Path="002_CreateTasks.sql" />
+    <File Path="004_AddTaskUserForeignKey.sql" />
+    <File Path="005_AddUserPassword.sql" />
+    <File Path="03_CreateUsers.sql" />
+  </Folder>
+  <Project Path="TaskManagement.Api/TaskManagement.Api.csproj" />
+  <Project Path="TaskManagement.Application/TaskManagement.Application.csproj" Id="015c82b6-041d-4647-8a12-4b0f74b33543" />
+  <Project Path="TaskManagement.Domain/TaskManagement.Domain.csproj" Id="1d221d78-f8a0-458e-bf40-d6852f0eedcd" />
+  <Project Path="TaskManagement.Infrastructure/TaskManagement.Infrastructure.csproj" Id="aa435659-2d21-4912-a9c9-e43596cb13ed" />
+  <Project Path="TaskManagement.Tests/TaskManagement.Tests.csproj" Id="001427ba-ac7e-4f1e-9360-a30f74d96798" />
+</Solution>

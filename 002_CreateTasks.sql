@@ -1,0 +1,19 @@
+USE TaskManagementDb;
+GO
+
+CREATE TABLE Tasks
+(
+    Id INT IDENTITY(1,1) NOT NULL,
+    Title NVARCHAR(150) NOT NULL,
+    Description NVARCHAR(500) NULL,
+    DueDate DATETIME2 NULL,
+    Priority NVARCHAR(20) NOT NULL,
+    Status NVARCHAR(20) NOT NULL,
+    CreatedAt DATETIME2 NOT NULL,
+    UpdatedAt DATETIME2 NULL,
+    UserId INT NOT NULL,
+
+    CONSTRAINT PK_Tasks
+        PRIMARY KEY (Id)
+);
+GO
