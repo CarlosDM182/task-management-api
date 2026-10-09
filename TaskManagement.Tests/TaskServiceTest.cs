@@ -150,7 +150,6 @@ namespace TaskManagement.Tests
         [Fact]
         public async Task UpdateAsync_ShouldReturnFalse_WhenTaskDoesNotExist()
         {
-            // Arrange
             var taskRepository = new Mock<ITaskRepository>();
             var userRepository = new Mock<IUserRepository>();
             var logger = new Mock<ILogger<TaskService>>();
@@ -185,7 +184,6 @@ namespace TaskManagement.Tests
         [Fact]
         public async Task UpdateAsync_ShouldUpdateTask_WhenTaskExists()
         {
-            // Arrange
             var taskRepository = new Mock<ITaskRepository>();
             var userRepository = new Mock<IUserRepository>();
             var logger = new Mock<ILogger<TaskService>>();
@@ -243,7 +241,6 @@ namespace TaskManagement.Tests
         [Fact]
         public async Task DeleteAsync_ShouldReturnFalse_WhenTaskDoesNotExist()
         {
-            // Arrange
             var taskRepository = new Mock<ITaskRepository>();
             var userRepository = new Mock<IUserRepository>();
             var logger = new Mock<ILogger<TaskService>>();
@@ -271,7 +268,6 @@ namespace TaskManagement.Tests
         [Fact]
         public async Task DeleteAsync_ShouldReturnTrue_WhenTaskExists()
         {
-            // Arrange
             var taskRepository = new Mock<ITaskRepository>();
             var userRepository = new Mock<IUserRepository>();
             var logger = new Mock<ILogger<TaskService>>();
@@ -307,7 +303,6 @@ namespace TaskManagement.Tests
         [Fact]
         public async Task UpdateAsync_ShouldReturnFalse_WhenTaskBelongsToAnotherUser()
         {
-            // Arrange
             var taskRepository = new Mock<ITaskRepository>();
             var userRepository = new Mock<IUserRepository>();
             var logger = new Mock<ILogger<TaskService>>();
@@ -335,13 +330,11 @@ namespace TaskManagement.Tests
                 Status = Domain.Enums.TaskStatus.InProgress
             };
 
-            // Act
             var result = await service.UpdateAsync(
                 10,
                 request,
                 99);
 
-            // Assert
             Assert.False(result);
 
             taskRepository.Verify(
@@ -352,7 +345,6 @@ namespace TaskManagement.Tests
         [Fact]
         public async Task DeleteAsync_ShouldReturnFalse_WhenTaskBelongsToAnotherUser()
         {
-            // Arrange
             var taskRepository = new Mock<ITaskRepository>();
             var userRepository = new Mock<IUserRepository>();
             var logger = new Mock<ILogger<TaskService>>();
@@ -385,7 +377,6 @@ namespace TaskManagement.Tests
         [Fact]
         public async Task GetByIdAsync_ShouldReturnTask_WhenTaskBelongsToUser()
         {
-            // Arrange
             var taskRepository = new Mock<ITaskRepository>();
             var userRepository = new Mock<IUserRepository>();
             var logger = new Mock<ILogger<TaskService>>();
@@ -418,7 +409,6 @@ namespace TaskManagement.Tests
         [Fact]
         public async Task GetByIdAsync_ShouldReturnNull_WhenTaskBelongsToAnotherUser()
         {
-            // Arrange
             var taskRepository = new Mock<ITaskRepository>();
             var userRepository = new Mock<IUserRepository>();
             var logger = new Mock<ILogger<TaskService>>();

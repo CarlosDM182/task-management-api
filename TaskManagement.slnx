@@ -2,9 +2,9 @@
   <Folder Name="/Database/">
     <File Path="001_CreateDatabase.sql" />
     <File Path="002_CreateTasks.sql" />
+    <File Path="003_CreateUsers.sql" />
     <File Path="004_AddTaskUserForeignKey.sql" />
     <File Path="005_AddUserPassword.sql" />
-    <File Path="03_CreateUsers.sql" />
   </Folder>
   <Project Path="TaskManagement.Api/TaskManagement.Api.csproj" />
   <Project Path="TaskManagement.Application/TaskManagement.Application.csproj" Id="015c82b6-041d-4647-8a12-4b0f74b33543" />

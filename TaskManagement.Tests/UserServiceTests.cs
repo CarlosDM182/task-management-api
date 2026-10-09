@@ -12,7 +12,6 @@ public class UserServiceTests
     [Fact]
     public async Task CreateAsync_ShouldCreateUser_WhenEmailDoesNotExist()
     {
-        // Arrange
         var userRepository = new Mock<IUserRepository>();
         var passwordHasher = new Mock<IPasswordHasher>();
         var logger = new Mock<ILogger<UserService>>();
@@ -52,10 +51,8 @@ public class UserServiceTests
             Password = "MiPassword123"
         };
 
-        // Act
         var result = await service.CreateAsync(request);
 
-        // Assert
         Assert.NotNull(result);
         Assert.Equal(1, result.Id);
         Assert.Equal("Carlos", result.Name);
@@ -72,7 +69,6 @@ public class UserServiceTests
     [Fact]
     public async Task CreateAsync_ShouldThrowInvalidOperationException_WhenEmailAlreadyExists()
     {
-        // Arrange
         var userRepository = new Mock<IUserRepository>();
         var passwordHasher = new Mock<IPasswordHasher>();
         var logger = new Mock<ILogger<UserService>>();
@@ -94,7 +90,6 @@ public class UserServiceTests
             Password = "MiPassword123"
         };
 
-        // Act & Assert
         await Assert.ThrowsAsync<InvalidOperationException>(
             () => service.CreateAsync(request));
 
